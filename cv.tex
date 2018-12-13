@@ -1,0 +1,53 @@
+% !TEX TS-program = luatex
+% Awesome Source CV LaTeX Template
+%
+% This template has been downloaded from:
+% https://github.com/darwiin/awesome-neue-latex-cv
+%
+% Author:
+% Christophe Roger (Darwiin)
+%
+% Template license:
+% CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+
+\documentclass[localFont,alternative]{yaac-another-awesome-cv}
+
+%
+% SETUP META INFORMATION
+%
+\name{Cristián}{Ramón-Cortés Vilarrodona}
+\tagline{Industrial Engineer | Computer Sciences Engineer}
+\photo{4cm}{images/cristian-ramon-cortes}
+\socialinfo{
+    \begin{keywords}
+        \keywordsentry{\dniSymbol}{\textbf{DNI:} 53295906F}
+        \keywordsentry{\dateBirthSymbol}{\textbf{Birthdate:} 19th October 1990}
+        \keywordsentry{\placeBirthSymbol}{\textbf{Birthplace:} Barcelona, Catalonia, Spain}
+        \keywordsentry{\locationSymbol}{\textbf{Address:} Carrer l'Hort de la Vila, 30-34, baixos 2. 08017 Barcelona}
+    \end{keywords}
+}
+
+
+%
+% WRITE DOCUMENT
+%
+\begin{document}
+
+	\makecvheader
+
+	\makecvfooter
+		{\textsc{\today}}
+		{\textsc{Cristián Ramón-Cortés Vilarrodona}}
+		{\thepage}
+		
+	\input{sections/1_biography}
+	\input{sections/2_personal_information}
+	\input{sections/3_education}
+	\input{sections/4_languages.tex}
+	\input{sections/5_misc}
+	\input{sections/6_experience}
+	\input{sections/7_publications}
+	%\input{sections/99_projects}
+	%\input{sections/99_references}
+	
+\end{document}
