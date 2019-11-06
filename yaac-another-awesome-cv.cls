@@ -66,14 +66,15 @@
 
 % Dependences
 %A Few Useful Packages
-\RequirePackage[english,french]{babel}
+\RequirePackage[english]{babel}
 \RequirePackage[utf8]{luainputenc}
-\RequirePackage{fontspec} 					                 % for loading fonts
-\RequirePackage{url,parskip} 	    % other packages for formatting
+\RequirePackage{fontspec} % for loading fonts
+\RequirePackage{url,parskip} % other packages for formatting
 \RequirePackage[usenames,dvipsnames]{xcolor}
 \RequirePackage{fullpage}
-\RequirePackage[margin=1.5cm]{geometry}
-\RequirePackage[fixed]{fontawesome5}
+\RequirePackage[margin=1.8cm]{geometry}
+\RequirePackage{fontawesome}
+\RequirePackage{academicons} % For ORCID icon (mine)
 \RequirePackage{hyperref}
 \RequirePackage{titlesec}
 \RequirePackage{array}
@@ -84,7 +85,10 @@
 \RequirePackage[skins]{tcolorbox}
 \RequirePackage{fancyhdr}
 \RequirePackage{ifthen}
-
+\RequirePackage{makecell} % Multi-row cells in scholarship (mine)
+\RequirePackage{booktabs} % More space between row entries in scholarhip (mine)
+\RequirePackage{smartdiagram} % Bubbles
+\RequirePackage{adjustbox} % To scale bubble diagrams
 
 \DeclareUnicodeCharacter{00E9}{\'{e}}
 % Define default accent colors
@@ -151,8 +155,7 @@
 \hyphenation{im-pre-se}
 
 % Setup fonts
-\defaultfontfeatures{Mapping=tex-text}
-%
+\defaultfontfeatures{Ligatures=TeX}
 
 % Define font to use according to localFont option
 \ifundef{\@local}
@@ -181,19 +184,24 @@
 \newcommand{\setleftcolumnlength}[1]{\setlength{\leftcolumnlength}{#1}}
 
 % Font Awesome icons aliases
-\newcommand{\mailSymbol}{\faAt}
-\newcommand{\locationSymbol}{\faMapMarker*}
+\newcommand{\mailSymbol}{\faEnvelopeO}
+\newcommand{\locationSymbol}{\faMapMarker}
 \newcommand{\infoSymbol}{\faInfo}
-\newcommand{\linkedinSymbol}{\faLinkedinIn}
+\newcommand{\linkedinSymbol}{\faLinkedin}
 \newcommand{\viadeoSymbol}{\faViadeo}
-\newcommand{\mobileSymbol}{\faMobile*}
+\newcommand{\mobileSymbol}{\faMobile}
 \newcommand{\githubSymbol}{\faGithub}
 \newcommand{\stackoverflowSymbol}{\faStackOverflow}
 \newcommand{\stackexchangeSymbol}{\faStackExchange}
 \newcommand{\mediumSymbol}{\faMedium}
 \newcommand{\bitbucketSymbol}{\faBitbucket}
-\newcommand{\websiteSymbol}{\faLink}
+\newcommand{\websiteSymbol}{\faGlobe}
+\newcommand{\skypeSymbol}{\faSkype}
+\newcommand{\orcidSymbol}{\aiOrcid}
 
+\newcommand{\dniSymbol}{\faInfo}
+\newcommand{\dateBirthSymbol}{\faCalendar}
+\newcommand{\placeBirthSymbol}{\faGlobe}
 
 \newcommand\link[2]{\color{linkcolor}\href{#1}{#2}\color{Black} }
 \newcommand\important[1]{\textbf #1}
@@ -206,15 +214,15 @@
 
 % Render author's name
 % Usage: \user{<firstanme>}{<lastname>}
-\newcommand\user[2]{\color{accentcolor}{\LARGE #1 \textsc{\textbf{#2}}}\color{Black}}
+\newcommand\user[2]{\color{accentcolor}{\Huge #1 \\ \textsc{\textbf{#2}}}\color{Black}}
 
 % Render a text with its symbol
 % Usage; \socialtext{<icon>}{<label>}
-\newcommand{\socialtext}[2]{\mbox{\textcolor{symbolcolor}{#1}#2\hspace{0.8em}}}
+\newcommand{\socialtext}[2]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}#2\hspace{1em}}}
 
 % Render a link with its symbol
 % Usage; \sociallink{<icon>}{<label>}
-\newcommand{\sociallink}[3]{\mbox{\textcolor{symbolcolor}{#1}\link{#2}{#3}\hspace{0.8em}}}
+\newcommand{\sociallink}[3]{\mbox{\textcolor{symbolcolor}{#1}\hspace{0.5em}\link{#2}{#3}\hspace{1em}}}
 
 % Define author's name
 % Usage: \name{<firstname>}{<lastname>}
@@ -240,25 +248,40 @@
 % Usage: \address{<address>}
 \newcommand*{\address}[1]{\socialtext{\locationSymbol}{#1}}
 
+% Render place of birth
+% Usage: \placeofbirth{<address>}
+\newcommand*{\placeofbirth}[1]{\socialtext{\placeBirthSymbol}{#1}}
+
+% Render date of birth
+% Usage: \dateofbirth{<date>}
+\newcommand*{\dateofbirth}[1]{\socialtext{\dateBirthSymbol}{#1}}
+
+% Render DNI
+% Usage: \dni{<dni>}
+\newcommand*{\dni}[1]{\socialtext{\dniSymbol}{#1}}
+
 % Render author's infos
 % Usage: \infos{<infos>}
 \newcommand*{\infos}[1]{\socialtext{\infoSymbol}{#1}}
 
+% Render author's personal website
+% Usage: \website{<url>}
+\newcommand*{\personalwebsite}[1]{\sociallink{}{https://#1}{#1}}
+
 % Render author's linked-in (optional)
 % Usage: \linkedin{<linked-in-nick>}
-\newcommand*{\linkedin}[1]{\sociallink{\linkedinSymbol}{http://www.linkedin.com/in/#1/fr}{linkedin.com/in/#1}}
-
-% Render author's viadeo(optional)
-% Usage: \viadeo{<viadeo-nick>}
-\newcommand*{\viadeo}[1]{\sociallink{\viadeoSymbol}{http://www.viadeo.com/fr/profile/#1}{viadeo.com/fr/profile/#1}}
+\newcommand*{\linkedin}[1]{\sociallink{\linkedinSymbol}{http://www.linkedin.com/in/#1/en}{linkedin.com/in/#1}}
+\newcommand*{\linkedinnoicon}[1]{\sociallink{}{http://www.linkedin.com/in/#1/en}{linkedin.com/in/#1}}
 
 % Render author's github (optional)
 % Usage: \github{<github-nick>}
 \newcommand*{\github}[1]{\sociallink{\githubSymbol}{https://www.github.com/#1}{github.com/#1}}           % Github icon + URL
+\newcommand*{\githubnoicon}[1]{\sociallink{}{https://www.github.com/#1}{github.com/#1}}           % Github icon + URL
 
 % Render author's stackoverflow profile (optional)
 % Usage: \stackoverflow{<stackoverflow-user-id>}
 \newcommand*{\stackoverflow}[1]{\sociallink{\stackoverflowSymbol}{https://www.stackoverflow.com/u/#1}{stackoverflow.com/u/#1}}
+\newcommand*{\stackoverflownoicon}[1]{\sociallink{}{https://www.stackoverflow.com/u/#1}{stackoverflow.com/u/#1}}
 
 % Render author's stackexchange profile (optional)
 % Usage: \stackexchange{<stackexchange-user-id>}
@@ -268,17 +291,17 @@
 % Usage: \medium{<medium-nick>}
 \newcommand*{\medium}[1]{\sociallink{\mediumSymbol}{https://www.medium.com/@#1}{medium.com/#1}}
 
-% Render author's bitbucket (optional)
-% Usage: \bitbucket{<bitbucket-account-name>}
-\newcommand*{\bitbucket}[1]{\sociallink{\bitbucketSymbol}{https://bitbucket.com/#1}{bitbucket.com/#1}}
+% Render author's orcid (optional)
+% Usage: \orcid{<orcid-id>}
+\newcommand*{\orcid}[1]{\sociallink{}{https://www.orcid.org/#1}{orcid.org/#1}}           % Orcid icon + URL
 
 % Render author's email (optional)
 % Usage: \email{<email adress>}
 \newcommand*{\email}[1]{\sociallink{\mailSymbol}{mailto:#1}{#1}}
 
 % Render a website link (optional)
-% Usage: \website{<website name>}{<website adress>}
-\newcommand*{\website}[2]{\sociallink{\websiteSymbol}{#1}{#2}}
+% Usage: \email{<email adress>}
+\newcommand*{\website}[2]{\sociallink{\faExternalLink}{#1}{#2}}
 
 % Render author's mobile phone (optional)
 % Usage: \smartphone{<mobile phone number>}
@@ -288,11 +311,11 @@
 \newcommand\resumetitle[1]{
   \ifundef{\@alternative}{
 	 \par{
-	 	 \bigskip\center{\Large \color{accentcolor}\textbf{#1}\color{Black}}\par
+	 	 \bigskip\center{\LARGE \color{accentcolor}\textbf{#1}\color{Black}}\par
 	 }
 	 \bigskip
   }{
-    \color{accentcolor}\textbf{\large{#1}}\color{black}
+    \color{accentcolor}\textbf{\LARGE{#1}}\color{black}
   }
 }
 
@@ -337,6 +360,7 @@
         \idphoto
       \end{minipage}
     }{}
+    \smallskip\\
     \resumetitle{\@tagline}
   }{
     \ifundef{\@photodiameter}{
@@ -345,6 +369,7 @@
       \begin{minipage}{\dimexpr\linewidth-\@photodiameter-2em}
     }
     \user{\@firstname}{\@lastname}\\
+    \smallskip\\
     \resumetitle{\@tagline}
     \smallskip\\
     \small{\@socialinfo}
@@ -379,8 +404,8 @@
   \end{tabular}
 }
 
-% Render a scholarshipentry in the scolarship environment
-% Usage: \scholarshipentry{<date>}{<description>}
+% Render a keywordsentry in the keywords environment
+% Usage: \keywordsentry{<keyword>}{<description>}
 \newcommand\keywordsentry[2]{
   \textbf{#1} &   #2\\
 }
@@ -390,15 +415,19 @@
 
 % Define the 'scholarship' environment
 \newenvironment{scholarship}{%
+  %\renewcommand{\arraystretch}{1.8}
   \begin{tabular}{Y p{\rightcolumnlength}}
 }{%
   \end{tabular}
 }
 
 % Render a scholarshipentry in the scolarship environment
-% Usage: \scholarshipentry{<date>}{<description>}
-\newcommand\scholarshipentry[2]{
-  #1    &  #2 \\
+% Usage: \scholarshipentry{<date>}{<description>}{<school>}
+\newcommand{\specialcell}[2][c]{%
+  \begin{tabular}[#1]{p{14cm}}#2\end{tabular}}
+  
+\newcommand\scholarshipentry[3]{
+  #1    &  \specialcell[t]{#2 \\ #3} \\ \addlinespace[0.2cm]
 }
 
 % Define the 'skills' environment
@@ -411,7 +440,7 @@
 % Render a skill in the skills environment
 % Usage: \skill{<skill>}{<level>}
 \newcommand\skill[2]{
-  \textbf{#1}    & \foreach \x in {1,...,5}{{\color{accentcolor!80} \ifnumgreater{\x}{#2}{\faCircle[regular]}{\faCircle}}\enspace } \\
+  \textbf{#1}    & \foreach \x in {1,...,5}{{\color{accentcolor!80} \ifnumgreater{\x}{#2}{\faCircleThin}{\faCircle}}\enspace } \\
 }
 
 \newcolumntype{E}{>{\raggedright\arraybackslash}p{\rightcolumnlength}}
@@ -490,6 +519,34 @@
   \\*
 }
 
+
+% Define the 'publications' environment
+\newenvironment{publications}{%
+  \begin{longtable}{l}
+}{%
+  \end{longtable}
+}
+
+% Define the 'publication' entry in the 'publications' environment
+% Usage:
+% \publication
+%    {Title}
+%    {Authors}
+%    {Journal}
+%    {Date}
+%    {Keywords}
+%    {Link}
+\newcommand\publication[6]{
+  \begin{minipage}[t]{\dimexpr(\linewidth) - 1.5em}
+    \textbf{\textsc{#1}}\smallskip\\
+    #2\\
+    \textsc{#3}\\
+    #4\smallskip\\
+    #6\\
+    \footnotesize{\foreach \n in {#5}{\cvtag{\n}}}\\
+  \end{minipage}
+  \\*
+}
 
 \newcommand*\twocolumnsection[2]{
   \begin{minipage}[t]{\dimexpr(\linewidth/2) - 3em}
