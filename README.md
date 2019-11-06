@@ -1,4 +1,4 @@
-YAAC: Another Awesome CV [![CircleCI](https://circleci.com/gh/darwiin/yaac-another-awesome-cv.svg?style=svg)](https://circleci.com/gh/darwiin/yaac-another-awesome-cv) [![Example](https://img.shields.io/badge/Exemple-pdf-blue.svg)](https://github.com/darwiin/yaac-another-awesome-cv/releases/download/v1.8.0/cv.pdf)
+YAAC: Another Awesome CV 
 =================
 
 ## Quick start
@@ -18,20 +18,6 @@ More informations about the original Alessandro Plasmati template can be found h
    -  [ Scribd ](http://fr.scribd.com/doc/16335667/Writing-your-Professional-CV-with-LaTeX)
    -  [ LaTeX Templates ](http://www.latextemplates.com/template/plasmati-graduate-cv)
    -  [ ShareLatex ](https://www.sharelatex.com/templates/cv-or-resume/professional-cv)
-
-## Preview
-
-### Normal style
-
-| Page. 1 | Page. 2 |
-|:---:|:---:|
-| ![Résumé](example/preview/cv1.jpeg) | ![Résumé](example/preview/cv2.jpeg) |
-
-### Alternative style
-
-| Page. 1 | Page. 2 |
-|:---:|:---:|
-| ![Résumé](example/preview/cv1-alternative.jpeg) | ![Résumé](example/preview/cv2-alternative.jpeg) |
 
 ## How to use **YAAC: Another Awesome CV** latex class
 
