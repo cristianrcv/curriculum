@@ -174,7 +174,7 @@
 
 %New length definition
 \newlength{\rightcolumnlength}
-\setlength{\rightcolumnlength}{15.3cm minus 1cm}
+\setlength{\rightcolumnlength}{13.5cm}
 
 \newlength{\leftcolumnlength}
 \setlength{\leftcolumnlength}{2.5cm}
@@ -280,8 +280,8 @@
 
 % Render author's stackoverflow profile (optional)
 % Usage: \stackoverflow{<stackoverflow-user-id>}
-\newcommand*{\stackoverflow}[1]{\sociallink{\stackoverflowSymbol}{https://www.stackoverflow.com/u/#1}{stackoverflow.com/u/#1}}
-\newcommand*{\stackoverflownoicon}[1]{\sociallink{}{https://www.stackoverflow.com/u/#1}{stackoverflow.com/u/#1}}
+\newcommand*{\stackoverflow}[1]{\sociallink{\stackoverflowSymbol}{https://www.stackoverflow.com/users/#1}{stackoverflow.com/users/#1}}
+\newcommand*{\stackoverflownoicon}[1]{\sociallink{}{https://www.stackoverflow.com/users/#1}{stackoverflow.com/users/#1}}
 
 % Render author's stackexchange profile (optional)
 % Usage: \stackexchange{<stackexchange-user-id>}
